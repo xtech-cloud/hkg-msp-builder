@@ -35,9 +35,13 @@ var _ server.Option
 
 type DocumentService interface {
 	// 合并文本
-	Merge(ctx context.Context, in *DocumentMergeRequest, opts ...client.CallOption) (*BlankResponse, error)
+	Merge(ctx context.Context, in *DocumentMergeRequest, opts ...client.CallOption) (*DocumentMergeResponse, error)
 	// 列举
 	List(ctx context.Context, in *ListRequest, opts ...client.CallOption) (*DocumentListResponse, error)
+	// 删除
+	Delete(ctx context.Context, in *DocumentDeleteRequest, opts ...client.CallOption) (*DocumentDeleteResponse, error)
+	// 批量删除
+	BatchDelete(ctx context.Context, in *DocumentBatchDeleteRequest, opts ...client.CallOption) (*DocumentBatchDeleteResponse, error)
 }
 
 type documentService struct {
@@ -52,9 +56,9 @@ func NewDocumentService(name string, c client.Client) DocumentService {
 	}
 }
 
-func (c *documentService) Merge(ctx context.Context, in *DocumentMergeRequest, opts ...client.CallOption) (*BlankResponse, error) {
+func (c *documentService) Merge(ctx context.Context, in *DocumentMergeRequest, opts ...client.CallOption) (*DocumentMergeResponse, error) {
 	req := c.c.NewRequest(c.name, "Document.Merge", in)
-	out := new(BlankResponse)
+	out := new(DocumentMergeResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -72,19 +76,45 @@ func (c *documentService) List(ctx context.Context, in *ListRequest, opts ...cli
 	return out, nil
 }
 
+func (c *documentService) Delete(ctx context.Context, in *DocumentDeleteRequest, opts ...client.CallOption) (*DocumentDeleteResponse, error) {
+	req := c.c.NewRequest(c.name, "Document.Delete", in)
+	out := new(DocumentDeleteResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *documentService) BatchDelete(ctx context.Context, in *DocumentBatchDeleteRequest, opts ...client.CallOption) (*DocumentBatchDeleteResponse, error) {
+	req := c.c.NewRequest(c.name, "Document.BatchDelete", in)
+	out := new(DocumentBatchDeleteResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Document service
 
 type DocumentHandler interface {
 	// 合并文本
-	Merge(context.Context, *DocumentMergeRequest, *BlankResponse) error
+	Merge(context.Context, *DocumentMergeRequest, *DocumentMergeResponse) error
 	// 列举
 	List(context.Context, *ListRequest, *DocumentListResponse) error
+	// 删除
+	Delete(context.Context, *DocumentDeleteRequest, *DocumentDeleteResponse) error
+	// 批量删除
+	BatchDelete(context.Context, *DocumentBatchDeleteRequest, *DocumentBatchDeleteResponse) error
 }
 
 func RegisterDocumentHandler(s server.Server, hdlr DocumentHandler, opts ...server.HandlerOption) error {
 	type document interface {
-		Merge(ctx context.Context, in *DocumentMergeRequest, out *BlankResponse) error
+		Merge(ctx context.Context, in *DocumentMergeRequest, out *DocumentMergeResponse) error
 		List(ctx context.Context, in *ListRequest, out *DocumentListResponse) error
+		Delete(ctx context.Context, in *DocumentDeleteRequest, out *DocumentDeleteResponse) error
+		BatchDelete(ctx context.Context, in *DocumentBatchDeleteRequest, out *DocumentBatchDeleteResponse) error
 	}
 	type Document struct {
 		document
@@ -97,10 +127,18 @@ type documentHandler struct {
 	DocumentHandler
 }
 
-func (h *documentHandler) Merge(ctx context.Context, in *DocumentMergeRequest, out *BlankResponse) error {
+func (h *documentHandler) Merge(ctx context.Context, in *DocumentMergeRequest, out *DocumentMergeResponse) error {
 	return h.DocumentHandler.Merge(ctx, in, out)
 }
 
 func (h *documentHandler) List(ctx context.Context, in *ListRequest, out *DocumentListResponse) error {
 	return h.DocumentHandler.List(ctx, in, out)
+}
+
+func (h *documentHandler) Delete(ctx context.Context, in *DocumentDeleteRequest, out *DocumentDeleteResponse) error {
+	return h.DocumentHandler.Delete(ctx, in, out)
+}
+
+func (h *documentHandler) BatchDelete(ctx context.Context, in *DocumentBatchDeleteRequest, out *DocumentBatchDeleteResponse) error {
+	return h.DocumentHandler.BatchDelete(ctx, in, out)
 }

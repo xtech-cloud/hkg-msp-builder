@@ -8,9 +8,13 @@ package builder;
 service Document
 {
     // 合并文本
-    rpc Merge(DocumentMergeRequest) returns (BlankResponse) { }
+    rpc Merge(DocumentMergeRequest) returns (DocumentMergeResponse) { }
     // 列举
     rpc List(ListRequest) returns (DocumentListResponse) { }
+    // 删除
+    rpc Delete(DocumentDeleteRequest) returns (DocumentDeleteResponse) { }
+    // 批量删除
+    rpc BatchDelete(DocumentBatchDeleteRequest) returns (DocumentBatchDeleteResponse) { }
 }
 
 // 文档合并的请求
@@ -22,9 +26,41 @@ message DocumentMergeRequest
     string format = 4;         // 格式
 }
 
+message DocumentMergeResponse
+{
+    Status status = 1; // 状态
+    string uuid = 2;   // 文档ID
+}
+
 message DocumentListResponse
 {
     Status status = 1;                  // 状态
     int64 total = 2;                    // 实体总数
     repeated DocumentEntity entity = 3; // 实体列表
+}
+
+// 文档删除的请求
+message DocumentDeleteRequest
+{
+    string uuid = 1; // 文档ID
+}
+
+// 文档删除的回复
+message DocumentDeleteResponse
+{
+    Status status = 1; // 状态
+    string uuid = 2;   // 成功删除的文档ID
+}
+
+// 文档批量删除的请求
+message DocumentBatchDeleteRequest
+{
+    repeated string uuid = 1; // 文档ID
+}
+
+// 文档批量删除的回复
+message DocumentBatchDeleteResponse
+{
+    Status status = 1;        // 状态
+    repeated string uuid = 2; // 成功删除的文档ID
 }

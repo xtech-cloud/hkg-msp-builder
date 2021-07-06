@@ -84,6 +84,53 @@ func (m *DocumentMergeRequest) GetFormat() string {
 	return ""
 }
 
+type DocumentMergeResponse struct {
+	Status               *Status  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Uuid                 string   `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DocumentMergeResponse) Reset()         { *m = DocumentMergeResponse{} }
+func (m *DocumentMergeResponse) String() string { return proto.CompactTextString(m) }
+func (*DocumentMergeResponse) ProtoMessage()    {}
+func (*DocumentMergeResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_db2565ead467a476, []int{1}
+}
+
+func (m *DocumentMergeResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DocumentMergeResponse.Unmarshal(m, b)
+}
+func (m *DocumentMergeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DocumentMergeResponse.Marshal(b, m, deterministic)
+}
+func (m *DocumentMergeResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DocumentMergeResponse.Merge(m, src)
+}
+func (m *DocumentMergeResponse) XXX_Size() int {
+	return xxx_messageInfo_DocumentMergeResponse.Size(m)
+}
+func (m *DocumentMergeResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DocumentMergeResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DocumentMergeResponse proto.InternalMessageInfo
+
+func (m *DocumentMergeResponse) GetStatus() *Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *DocumentMergeResponse) GetUuid() string {
+	if m != nil {
+		return m.Uuid
+	}
+	return ""
+}
+
 type DocumentListResponse struct {
 	Status               *Status           `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
 	Total                int64             `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
@@ -97,7 +144,7 @@ func (m *DocumentListResponse) Reset()         { *m = DocumentListResponse{} }
 func (m *DocumentListResponse) String() string { return proto.CompactTextString(m) }
 func (*DocumentListResponse) ProtoMessage()    {}
 func (*DocumentListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_db2565ead467a476, []int{1}
+	return fileDescriptor_db2565ead467a476, []int{2}
 }
 
 func (m *DocumentListResponse) XXX_Unmarshal(b []byte) error {
@@ -139,9 +186,190 @@ func (m *DocumentListResponse) GetEntity() []*DocumentEntity {
 	return nil
 }
 
+// 文档删除的请求
+type DocumentDeleteRequest struct {
+	Uuid                 string   `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DocumentDeleteRequest) Reset()         { *m = DocumentDeleteRequest{} }
+func (m *DocumentDeleteRequest) String() string { return proto.CompactTextString(m) }
+func (*DocumentDeleteRequest) ProtoMessage()    {}
+func (*DocumentDeleteRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_db2565ead467a476, []int{3}
+}
+
+func (m *DocumentDeleteRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DocumentDeleteRequest.Unmarshal(m, b)
+}
+func (m *DocumentDeleteRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DocumentDeleteRequest.Marshal(b, m, deterministic)
+}
+func (m *DocumentDeleteRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DocumentDeleteRequest.Merge(m, src)
+}
+func (m *DocumentDeleteRequest) XXX_Size() int {
+	return xxx_messageInfo_DocumentDeleteRequest.Size(m)
+}
+func (m *DocumentDeleteRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DocumentDeleteRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DocumentDeleteRequest proto.InternalMessageInfo
+
+func (m *DocumentDeleteRequest) GetUuid() string {
+	if m != nil {
+		return m.Uuid
+	}
+	return ""
+}
+
+// 文档删除的回复
+type DocumentDeleteResponse struct {
+	Status               *Status  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Uuid                 string   `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DocumentDeleteResponse) Reset()         { *m = DocumentDeleteResponse{} }
+func (m *DocumentDeleteResponse) String() string { return proto.CompactTextString(m) }
+func (*DocumentDeleteResponse) ProtoMessage()    {}
+func (*DocumentDeleteResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_db2565ead467a476, []int{4}
+}
+
+func (m *DocumentDeleteResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DocumentDeleteResponse.Unmarshal(m, b)
+}
+func (m *DocumentDeleteResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DocumentDeleteResponse.Marshal(b, m, deterministic)
+}
+func (m *DocumentDeleteResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DocumentDeleteResponse.Merge(m, src)
+}
+func (m *DocumentDeleteResponse) XXX_Size() int {
+	return xxx_messageInfo_DocumentDeleteResponse.Size(m)
+}
+func (m *DocumentDeleteResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DocumentDeleteResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DocumentDeleteResponse proto.InternalMessageInfo
+
+func (m *DocumentDeleteResponse) GetStatus() *Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *DocumentDeleteResponse) GetUuid() string {
+	if m != nil {
+		return m.Uuid
+	}
+	return ""
+}
+
+// 文档批量删除的请求
+type DocumentBatchDeleteRequest struct {
+	Uuid                 []string `protobuf:"bytes,1,rep,name=uuid,proto3" json:"uuid,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DocumentBatchDeleteRequest) Reset()         { *m = DocumentBatchDeleteRequest{} }
+func (m *DocumentBatchDeleteRequest) String() string { return proto.CompactTextString(m) }
+func (*DocumentBatchDeleteRequest) ProtoMessage()    {}
+func (*DocumentBatchDeleteRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_db2565ead467a476, []int{5}
+}
+
+func (m *DocumentBatchDeleteRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DocumentBatchDeleteRequest.Unmarshal(m, b)
+}
+func (m *DocumentBatchDeleteRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DocumentBatchDeleteRequest.Marshal(b, m, deterministic)
+}
+func (m *DocumentBatchDeleteRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DocumentBatchDeleteRequest.Merge(m, src)
+}
+func (m *DocumentBatchDeleteRequest) XXX_Size() int {
+	return xxx_messageInfo_DocumentBatchDeleteRequest.Size(m)
+}
+func (m *DocumentBatchDeleteRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DocumentBatchDeleteRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DocumentBatchDeleteRequest proto.InternalMessageInfo
+
+func (m *DocumentBatchDeleteRequest) GetUuid() []string {
+	if m != nil {
+		return m.Uuid
+	}
+	return nil
+}
+
+// 文档批量删除的回复
+type DocumentBatchDeleteResponse struct {
+	Status               *Status  `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Uuid                 []string `protobuf:"bytes,2,rep,name=uuid,proto3" json:"uuid,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DocumentBatchDeleteResponse) Reset()         { *m = DocumentBatchDeleteResponse{} }
+func (m *DocumentBatchDeleteResponse) String() string { return proto.CompactTextString(m) }
+func (*DocumentBatchDeleteResponse) ProtoMessage()    {}
+func (*DocumentBatchDeleteResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_db2565ead467a476, []int{6}
+}
+
+func (m *DocumentBatchDeleteResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DocumentBatchDeleteResponse.Unmarshal(m, b)
+}
+func (m *DocumentBatchDeleteResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DocumentBatchDeleteResponse.Marshal(b, m, deterministic)
+}
+func (m *DocumentBatchDeleteResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DocumentBatchDeleteResponse.Merge(m, src)
+}
+func (m *DocumentBatchDeleteResponse) XXX_Size() int {
+	return xxx_messageInfo_DocumentBatchDeleteResponse.Size(m)
+}
+func (m *DocumentBatchDeleteResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DocumentBatchDeleteResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DocumentBatchDeleteResponse proto.InternalMessageInfo
+
+func (m *DocumentBatchDeleteResponse) GetStatus() *Status {
+	if m != nil {
+		return m.Status
+	}
+	return nil
+}
+
+func (m *DocumentBatchDeleteResponse) GetUuid() []string {
+	if m != nil {
+		return m.Uuid
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*DocumentMergeRequest)(nil), "builder.DocumentMergeRequest")
+	proto.RegisterType((*DocumentMergeResponse)(nil), "builder.DocumentMergeResponse")
 	proto.RegisterType((*DocumentListResponse)(nil), "builder.DocumentListResponse")
+	proto.RegisterType((*DocumentDeleteRequest)(nil), "builder.DocumentDeleteRequest")
+	proto.RegisterType((*DocumentDeleteResponse)(nil), "builder.DocumentDeleteResponse")
+	proto.RegisterType((*DocumentBatchDeleteRequest)(nil), "builder.DocumentBatchDeleteRequest")
+	proto.RegisterType((*DocumentBatchDeleteResponse)(nil), "builder.DocumentBatchDeleteResponse")
 }
 
 func init() {
@@ -149,23 +377,29 @@ func init() {
 }
 
 var fileDescriptor_db2565ead467a476 = []byte{
-	// 276 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x51, 0xcd, 0x4e, 0x83, 0x40,
-	0x10, 0x2e, 0x42, 0xd1, 0x6e, 0x0f, 0x26, 0x13, 0x52, 0x09, 0xd1, 0xa4, 0xe1, 0x22, 0x27, 0x48,
-	0xf0, 0x6c, 0x62, 0x8c, 0xde, 0xf4, 0xb2, 0x3e, 0xc1, 0x22, 0xa3, 0x12, 0x81, 0xad, 0xec, 0x90,
-	0xe8, 0x0b, 0x78, 0xf1, 0xa5, 0x0d, 0xc3, 0x82, 0x35, 0xbd, 0xcd, 0x7c, 0x3f, 0xcc, 0xf7, 0xb1,
-	0xe2, 0x7c, 0xd7, 0x69, 0xd2, 0x59, 0xd1, 0x57, 0x75, 0x89, 0x5d, 0x56, 0xea, 0xe7, 0xbe, 0xc1,
-	0x96, 0x52, 0x86, 0xe1, 0xd8, 0xe2, 0x51, 0xf4, 0x5f, 0x66, 0xde, 0x54, 0x87, 0xe5, 0x28, 0x8a,
-	0x6b, 0x11, 0xdc, 0x59, 0xdb, 0x23, 0x76, 0xaf, 0x28, 0xf1, 0xa3, 0x47, 0x43, 0x00, 0xc2, 0x6b,
-	0x55, 0x83, 0xa1, 0xb3, 0x75, 0x92, 0x95, 0xe4, 0x19, 0x02, 0xb1, 0xac, 0x55, 0x81, 0x75, 0x78,
-	0xb4, 0x75, 0x93, 0x95, 0x1c, 0x97, 0x41, 0x49, 0xf8, 0x49, 0xa1, 0xcb, 0x20, 0xcf, 0xb0, 0x11,
-	0xfe, 0x8b, 0xee, 0x1a, 0x45, 0xa1, 0xc7, 0x7e, 0xbb, 0xc5, 0xdf, 0xce, 0xdf, 0xb9, 0x87, 0xca,
-	0x90, 0x44, 0xb3, 0xd3, 0xad, 0x41, 0xb8, 0x14, 0xbe, 0x21, 0x45, 0xbd, 0xe1, 0x83, 0xeb, 0xfc,
-	0x34, 0xb5, 0x69, 0xd3, 0x27, 0x86, 0xa5, 0xa5, 0x87, 0x0c, 0xa4, 0x49, 0x0d, 0x19, 0x9c, 0xc4,
-	0x95, 0xe3, 0x02, 0x99, 0xf0, 0xb1, 0xa5, 0x8a, 0xbe, 0x38, 0xc5, 0x3a, 0x3f, 0x9b, 0xed, 0xd3,
-	0xb5, 0x7b, 0xa6, 0xa5, 0x95, 0xe5, 0x3f, 0x8e, 0x38, 0x99, 0x28, 0xb8, 0x11, 0x4b, 0xee, 0x0e,
-	0x17, 0x07, 0xb6, 0xfd, 0x7f, 0x12, 0x6d, 0x66, 0xfa, 0xb6, 0x56, 0xed, 0xfb, 0x14, 0x3e, 0x5e,
-	0xc0, 0xb5, 0xf0, 0x86, 0x3a, 0x10, 0xcc, 0x8a, 0xb1, 0xdd, 0xe8, 0x3b, 0xfc, 0xec, 0x7e, 0xf7,
-	0x78, 0x51, 0xf8, 0xfc, 0x16, 0x57, 0xbf, 0x01, 0x00, 0x00, 0xff, 0xff, 0x87, 0xdd, 0x5a, 0xa7,
-	0xd0, 0x01, 0x00, 0x00,
+	// 378 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x53, 0xcd, 0x4e, 0xb3, 0x50,
+	0x10, 0x2d, 0xa5, 0xe5, 0xfb, 0x3a, 0x5d, 0x98, 0x4c, 0xb0, 0x12, 0xfc, 0x6b, 0xd0, 0xc4, 0x26,
+	0x26, 0xad, 0xa9, 0x6b, 0x37, 0xa6, 0x26, 0x26, 0xea, 0x06, 0x75, 0xd3, 0x1d, 0x2d, 0xa3, 0x25,
+	0xa1, 0x50, 0x61, 0x48, 0xf4, 0x05, 0x7c, 0x2a, 0x1f, 0xce, 0x70, 0x2f, 0x50, 0x5a, 0xac, 0x89,
+	0xc6, 0xdd, 0x9d, 0x99, 0x73, 0xce, 0x9c, 0x99, 0x01, 0xd8, 0x5b, 0x44, 0x21, 0x87, 0x83, 0x49,
+	0xe2, 0xf9, 0x2e, 0x45, 0x03, 0x37, 0x9c, 0x26, 0x73, 0x0a, 0xb8, 0x2f, 0xd2, 0xf8, 0x2f, 0xcb,
+	0x9b, 0xe6, 0x2a, 0x2c, 0x9e, 0x39, 0x11, 0xb9, 0x12, 0x64, 0xf9, 0xa0, 0x8f, 0x32, 0xda, 0x1d,
+	0x45, 0xcf, 0x64, 0xd3, 0x4b, 0x42, 0x31, 0x23, 0x42, 0x23, 0x70, 0xe6, 0x64, 0x28, 0x5d, 0xa5,
+	0xd7, 0xb2, 0xc5, 0x1b, 0x75, 0x68, 0xfa, 0xce, 0x84, 0x7c, 0xa3, 0xde, 0x55, 0x7b, 0x2d, 0x5b,
+	0x06, 0x29, 0x92, 0xe9, 0x95, 0x0d, 0x55, 0x24, 0xc5, 0x1b, 0x3b, 0xa0, 0x3d, 0x85, 0xd1, 0xdc,
+	0x61, 0xa3, 0x21, 0xf8, 0x59, 0x64, 0x3d, 0xc0, 0xf6, 0x5a, 0xb7, 0x78, 0x11, 0x06, 0x31, 0xe1,
+	0x09, 0x68, 0x31, 0x3b, 0x9c, 0xc4, 0xa2, 0x61, 0x7b, 0xb8, 0xd5, 0xcf, 0xdc, 0xf6, 0xef, 0x45,
+	0xda, 0xce, 0xca, 0x69, 0xb7, 0x24, 0xf1, 0x5c, 0xa3, 0x2e, 0x7d, 0xa5, 0x6f, 0xeb, 0x5d, 0x59,
+	0x0e, 0x71, 0xeb, 0xc5, 0xfc, 0x73, 0x55, 0x1d, 0x9a, 0x1c, 0xb2, 0xe3, 0x0b, 0x59, 0xd5, 0x96,
+	0x01, 0x0e, 0x40, 0xa3, 0x80, 0x3d, 0x7e, 0x13, 0xb3, 0xb5, 0x87, 0x3b, 0x05, 0x3d, 0xef, 0x76,
+	0x25, 0xca, 0x76, 0x06, 0xb3, 0x4e, 0x97, 0xe3, 0x8d, 0xc8, 0x27, 0x2e, 0x6f, 0x53, 0xb8, 0x56,
+	0x4a, 0xae, 0x1f, 0xa1, 0xb3, 0x0e, 0xfe, 0x8b, 0x65, 0x9c, 0x81, 0x99, 0xcb, 0x5e, 0x3a, 0x3c,
+	0x9d, 0x6d, 0x32, 0xa2, 0x16, 0x8c, 0x31, 0xec, 0x7e, 0xc9, 0xf8, 0xbd, 0x9b, 0x42, 0x7b, 0xf8,
+	0x51, 0x87, 0xff, 0xb9, 0x38, 0x5e, 0x43, 0x53, 0x5c, 0x1d, 0xf7, 0x2b, 0x8b, 0x2c, 0x7f, 0x7b,
+	0xe6, 0xc1, 0xa6, 0xb2, 0x74, 0x64, 0xd5, 0xf0, 0x02, 0x1a, 0xe9, 0xa1, 0x51, 0x2f, 0x90, 0xf2,
+	0xee, 0x92, 0x5f, 0x95, 0x2f, 0x7f, 0x15, 0x56, 0x0d, 0x6f, 0x40, 0x93, 0x43, 0x62, 0xb5, 0xd5,
+	0xca, 0xbe, 0xcc, 0xc3, 0x8d, 0xf5, 0x42, 0x6c, 0x0c, 0xed, 0xd2, 0xda, 0xf0, 0xa8, 0xc2, 0xa8,
+	0x9e, 0xc1, 0x3c, 0xfe, 0x1e, 0x94, 0x6b, 0x4f, 0x34, 0xf1, 0x93, 0x9e, 0x7f, 0x06, 0x00, 0x00,
+	0xff, 0xff, 0x5d, 0xc0, 0x62, 0xf3, 0xe9, 0x03, 0x00, 0x00,
 }
